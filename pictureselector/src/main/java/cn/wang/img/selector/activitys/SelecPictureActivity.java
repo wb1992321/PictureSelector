@@ -342,10 +342,8 @@ public abstract class SelecPictureActivity extends AppCompatActivity implements 
     private void intentCamera() {
         mPhotoFile = getPhotoFile();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            String filePK = String.format("%s.fileProvider", getApplication().getPackageName());
-            Log.d(TAG, "filePK==" + filePK);
             Uri imageUri = FileProvider.getUriForFile(this,
-                    "cn.wang.img.selector.fileProvider", mPhotoFile);//通过FileProvider创建一个content类型的Uri
+                    getApplication().getPackageName(), mPhotoFile);//通过FileProvider创建一个content类型的Uri
             Intent intent = new Intent();
 //            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); //添加这一句表示对目标应用临时授权该Uri所代表的文件
             intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);//设置Action为拍照
